@@ -1,16 +1,101 @@
 ---
+import "../styles/global.css";
 
+import PersonalDetails, {
+  type PersonalDetailsProps,
+} from "../components/PersonalDetails.astro";
+import Footer from "../components/Footer.astro";
+import { type SocialProps } from "../components/Social.astro";
+import Section, { type SectionProps } from "../components/Section.astro";
+import ThemeIcon from "../components/ThemeIcon.astro";
+
+const image = true;
+const personalDetails: PersonalDetailsProps = {
+  firstName: "FIRST_NAME",
+  lastName: "LAST_NAME",
+  jobTitle: "JOB",
+  phoneNumber: "PHONE",
+  emailAddress: "EMAIL",
+  city: "CITY",
+  country: "COUNTRY",
+  personalWebsite: "PERSONAL WEBSITE LINK",
+};
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const sections: SectionProps[] = [
+  {
+    title: "Summary",
+    visible: true,
+  },
+  {
+    title: "Experience",
+    visible: true,
+  },
+  {
+    title: "Internships",
+    visible: false,
+  },
+  {
+    title: "Education",
+    visible: true,
+  },
+  {
+    title: "Skills",
+    visible: true,
+  },
+  {
+    title: "Languages",
+    visible: true,
+  },
+];
+const socials: SocialProps[] = [
+  {
+    platform: "twitter",
+    username: "astrodotbuild",
+  },
+  {
+    platform: "github",
+    username: "withastro",
+  },
+  {
+    platform: "youtube",
+    username: "astrodotbuild",
+  },
+];
+
+const pageTitle = `${personalDetails.firstName} | Resume`;
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Name | Resume</title>
-	</head>
-	<body>
-		<h1>Name | Resume</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
+  </head>
+  <body>
+    <ThemeIcon />
+    <PersonalDetails {...personalDetails} />
+    {sections.map((section) => <Section {...section} />)}
+
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    <Footer socials={socials} />
+  </body>
 </html>

@@ -1,0 +1,19 @@
+---
+import type { ComponentProps } from "astro/types";
+
+interface Props {
+  title: string;
+  visible?: boolean;
+}
+const { title, visible = true } = Astro.props;
+export type SectionProps = ComponentProps<typeof Section>;
+---
+
+{
+  visible && (
+    <section>
+      <h2>{title}</h2>
+      <slot />
+    </section>
+  )
+}

@@ -1,0 +1,43 @@
+---
+import type { ComponentProps } from "astro/types";
+import { Image } from "astro:assets";
+import personPlaceholder from "../images/person_placeholder.svg";
+
+interface Props {
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  jobTitle: string;
+  phoneNumber?: string;
+  emailAddress: string;
+  city: string;
+  country: string;
+  personalWebsite?: string;
+}
+const {
+  firstName,
+  middleName,
+  lastName,
+  jobTitle,
+  phoneNumber,
+  emailAddress,
+  city,
+  country,
+  personalWebsite,
+} = Astro.props;
+export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
+---
+
+<Image src={personPlaceholder} alt="Person placeholder image" />
+<!-- <Image src="/images/bird-in-public-folder.jpg" alt="A bird." width="50" height="50"/> -->
+<!-- <Image src="https://example.com/remote-bird.jpg" alt="A bird." width="50" height="50"/> -->
+<ul>
+  <li>My name is {firstName}.</li>
+  <li>
+    I live in {country} and I work as a {jobTitle}.
+  </li>
+</ul>
+<p>
+  I am working through Astro's introductory tutorial. This is the second page on
+  my website, and it's the first one I built myself!
+</p>

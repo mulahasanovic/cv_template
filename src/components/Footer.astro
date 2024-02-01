@@ -1,0 +1,23 @@
+---
+import Social, { type SocialProps } from "./Social.astro";
+interface Props {
+  socials: SocialProps[];
+}
+const { socials } = Astro.props;
+---
+
+<style>
+  footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>
+
+<footer>
+  {
+    socials.map((social) => (
+      <Social platform={social.platform} username={social.username} />
+    ))
+  }
+</footer>
