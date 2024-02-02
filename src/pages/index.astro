@@ -20,6 +20,7 @@ const personalDetails: PersonalDetailsProps = {
 };
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const experiences = await Astro.glob<EntryProps>("../experiences/*.md");
+const education = await Astro.glob<EntryProps>("../education/*.md");
 
 const socials: SocialProps[] = [
   {
@@ -78,10 +79,7 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
         {
           experiences.map((exp) => (
             <Entry
-              title={exp.frontmatter.title}
-              sub={exp.frontmatter.sub}
-              startDate={exp.frontmatter.startDate}
-              endDate={exp.frontmatter.endDate}
+              {...exp.frontmatter}
               compiledContent={exp.compiledContent()}
             />
           ))
@@ -90,7 +88,16 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
 
       <Section title="Internships" visible={false} />
 
-      <Section title="Education" />
+      <Section title="Education">
+        {
+          education.map((edu) => (
+            <Entry
+              {...edu.frontmatter}
+              compiledContent={edu.compiledContent()}
+            />
+          ))
+        }
+      </Section>
 
       <Section title="Skills">
         <ul>

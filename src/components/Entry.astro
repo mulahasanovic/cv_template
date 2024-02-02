@@ -5,7 +5,7 @@ interface Props {
   sub: string;
   subLink?: string;
   startDate?: string;
-  endDate?: string;
+  endDate?: string | "present";
   compiledContent: string;
 }
 
@@ -15,9 +15,9 @@ export type EntryProps = ComponentProps<typeof Entry>;
 ---
 
 <div class="entry">
-  <header>
+  <header class="flex">
     <div>
-      <h3>{title}</h3>
+      <h3 class="entry__title">{title}</h3>
       {
         subLink ? (
           <a
@@ -26,20 +26,22 @@ export type EntryProps = ComponentProps<typeof Entry>;
               subLink?.startsWith("https://") ? subLink : `https://${subLink}`
             }
           >
-            <h4>{sub}</h4>
+            <h4 class="entry__subtitle">{sub}</h4>
           </a>
         ) : (
-          <h4>{sub}</h4>
+          <h4 class="entry__subtitle">{sub}</h4>
         )
       }
     </div>
     {
       (startDate || endDate) && (
-        <div>
+        <div class="entry__date ml-auto">
           {`${startDate ? `${startDate} - ` : ""}${endDate ? endDate : ""}`}
         </div>
       )
     }
   </header>
-  <Fragment set:html={compiledContent} />
+  <div class="entry__content">
+    <Fragment set:html={compiledContent} />
+  </div>
 </div>
