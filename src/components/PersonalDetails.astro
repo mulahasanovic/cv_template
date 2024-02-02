@@ -13,6 +13,7 @@ interface Props {
   city: string;
   country: string;
   personalWebsite?: string;
+  showImage?: boolean;
 }
 const {
   firstName,
@@ -24,20 +25,65 @@ const {
   city,
   country,
   personalWebsite,
+  showImage = true,
 } = Astro.props;
 export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
+
+function showIfExists(text: string | undefined, append: string = "") {
+  return typeof text !== "undefined" && text !== "" && `${text}${append}`;
+}
 ---
 
-<Image src={personPlaceholder} alt="Person placeholder image" />
-<!-- <Image src="/images/bird-in-public-folder.jpg" alt="A bird." width="50" height="50"/> -->
-<!-- <Image src="https://example.com/remote-bird.jpg" alt="A bird." width="50" height="50"/> -->
-<ul>
-  <li>My name is {firstName}.</li>
-  <li>
-    I live in {country} and I work as a {jobTitle}.
-  </li>
-</ul>
-<p>
-  I am working through Astro's introductory tutorial. This is the second page on
-  my website, and it's the first one I built myself!
-</p>
+<div class="flex">
+  {
+    showImage && (
+      <Image
+        src={personPlaceholder}
+        class="personal__image mr-10"
+        alt="Person placeholder image"
+        format="svg"
+      />
+    )
+  }
+  <div class="personal__primary">
+    <h1 class="personal__name">
+      {firstName}
+      {showIfExists(middleName)}
+      {lastName}
+    </h1>
+    <h2 class="personal__job-title mt-1.5">
+      {jobTitle}
+    </h2>
+  </div>
+  <div class="personal__secondary ml-auto">
+    <h5><span>{showIfExists(phoneNumber)}</span></h5>
+    <h5><span>{showIfExists(emailAddress)}</span></h5>
+    <h5><span>{showIfExists(personalWebsite)}</span></h5>
+    <h5><span>{showIfExists(city, ", ")}{showIfExists(country)}</span></h5>
+  </div>
+</div>
+
+<style>
+  .personal__primary {
+    width: 240px;
+  }
+  .personal__image {
+    background-color: rgb(209, 209, 209);
+    border-radius: 50%;
+  }
+  .personal__name {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .personal__job-title {
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+  }
+  .personal__secondary {
+    width: 300px;
+  }
+</style>

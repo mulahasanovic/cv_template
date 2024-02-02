@@ -3,6 +3,7 @@ import type { ComponentProps } from "astro/types";
 
 interface Props {
   title: string;
+  content?: string;
   visible?: boolean;
 }
 const { title, visible = true } = Astro.props;
@@ -12,8 +13,32 @@ export type SectionProps = ComponentProps<typeof Section>;
 {
   visible && (
     <section>
-      <h2>{title}</h2>
-      <slot />
+      <h2 class="section__title">{title}</h2>
+      <hr class="section__divider" />
+      <div class="section__content">
+        <slot />
+      </div>
     </section>
   )
 }
+
+<style>
+  .section__title {
+    margin: 54px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 500;
+
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 5px;
+  }
+  .section__divider {
+    border-style: dotted;
+    border-top-width: 2px;
+    margin-block-start: 4px;
+  }
+  .section__content {
+    margin-block-start: 22px;
+  }
+</style>
