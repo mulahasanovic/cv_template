@@ -1,44 +1,47 @@
 # Quick CV \ Resume template based on Astro Starter Kit: Minimal
 
-- Update
-  - Name
-  - Socials
-  - Work experiences
-  - Skills
-- Enjoy
-
-// TODO: (Sead) update links below
-
-## Astro Starter Kit: Minimal
-
-```sh
-npm create astro@latest -- --template minimal
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- At `index.astro` update the following:
+  - `personalDetails`
+  - `skills`
+  - `languages`
+  - `socials`
+- Create `md` files with your experiences and education
+- Edit the template as you see fit, add new sections, hide sections, remove sections, customize styles
+- Good luck & Enjoy
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+Inside of this project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   ├── Entry.astro
+│   │   ├── Footer.astro
+│   │   ├── PersonalDetails.astro
+│   │   ├── Section.astro
+│   │   ├── Skill.astro
+│   │   └── Social.astro
+│   ├── education/
+│   │   └── 01_school.md
+│   ├── experiences/
+│   │   ├── 01_template_job_1.md
+│   │   ├── 02_template_job_2.md
+│   │   └── 03_template_job_3.md
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name. In our case for the resume template, we are skipping over that feature but we make use of `education` and `experiences` folders to dynamically fill out their respective sections with `await Astro.glob<EntryProps>("../experiences/*.md");` command.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Any static assets, like images, can be placed in the `public/` directory. This is where you can put your profile picture, or you can put it in `images` and replace `images/person_placeholder.svg`.
 
 ## 🧞 Commands
 
@@ -55,4 +58,4 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[Astro Docs](https://docs.astro.build)
