@@ -2,6 +2,10 @@
 import type { ComponentProps } from "astro/types";
 import { Image } from "astro:assets";
 import personPlaceholder from "../images/person_placeholder.svg";
+import locationIcon from "../images/icon_location.svg";
+import mailIcon from "../images/icon_mail.svg";
+import phoneIcon from "../images/icon_phone.svg";
+import webIcon from "../images/icon_web.svg";
 
 interface Props {
   firstName: string;
@@ -56,10 +60,40 @@ function showIfExists(text: string | undefined, append: string = "") {
     </h2>
   </div>
   <div class="personal__secondary ml-auto">
-    <h5><span>{showIfExists(phoneNumber)}</span></h5>
-    <h5><span>{showIfExists(emailAddress)}</span></h5>
-    <h5><span>{showIfExists(personalWebsite)}</span></h5>
-    <h5><span>{showIfExists(city, ", ")}{showIfExists(country)}</span></h5>
+    <h5>
+      <Image
+        src={phoneIcon}
+        alt="Phone icon"
+        format="svg"
+        class="personal__icon"
+      /><span class="personal__info">{showIfExists(phoneNumber)}</span>
+    </h5>
+    <h5>
+      <Image
+        src={mailIcon}
+        alt="Email icon"
+        format="svg"
+        class="personal__icon"
+      /><span class="personal__info">{showIfExists(emailAddress)}</span>
+    </h5>
+    <h5>
+      <Image
+        src={webIcon}
+        alt="Website icon"
+        format="svg"
+        class="personal__icon"
+      /><span class="personal__info">{showIfExists(personalWebsite)}</span>
+    </h5>
+    <h5>
+      <Image
+        src={locationIcon}
+        alt="Location icon"
+        format="svg"
+        class="personal__icon"
+      /><span class="personal__info"
+        >{showIfExists(city, ", ")}{showIfExists(country)}</span
+      >
+    </h5>
   </div>
 </div>
 
@@ -85,5 +119,29 @@ function showIfExists(text: string | undefined, append: string = "") {
   }
   .personal__secondary {
     width: 300px;
+  }
+
+  .personal__secondary > h5 {
+    position: relative;
+  }
+
+  .personal__secondary > h5:not(:first-child) {
+    margin-top: 6px;
+  }
+
+  .personal__icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .personal__icon + .personal__info {
+    display: block;
+    transform: translateX(24px);
+  }
+
+  .personal__info {
+    line-height: 18px;
   }
 </style>
