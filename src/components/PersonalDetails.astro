@@ -13,9 +13,9 @@ interface Props {
   lastName: string;
   jobTitle: string;
   phoneNumber?: string;
-  emailAddress: string;
-  city: string;
-  country: string;
+  emailAddress?: string;
+  city?: string;
+  country?: string;
   personalWebsite?: string;
   showImage?: boolean;
 }
@@ -32,10 +32,6 @@ const {
   showImage = true,
 } = Astro.props;
 export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
-
-function showIfExists(text: string | undefined, append: string = "") {
-  return typeof text !== "undefined" && text !== "" && `${text}${append}`;
-}
 ---
 
 <div class="flex">
@@ -52,7 +48,7 @@ function showIfExists(text: string | undefined, append: string = "") {
   <div class="personal__primary">
     <h1 class="personal__name">
       {firstName}
-      {showIfExists(middleName)}
+      {middleName && middleName}
       {lastName}
     </h1>
     <h2 class="personal__job-title mt-1.5">
@@ -60,40 +56,73 @@ function showIfExists(text: string | undefined, append: string = "") {
     </h2>
   </div>
   <div class="personal__secondary ml-auto">
-    <h5>
-      <Image
-        src={phoneIcon}
-        alt="Phone icon"
-        format="svg"
-        class="personal__icon"
-      /><span class="personal__info">{showIfExists(phoneNumber)}</span>
-    </h5>
-    <h5>
-      <Image
-        src={mailIcon}
-        alt="Email icon"
-        format="svg"
-        class="personal__icon"
-      /><span class="personal__info">{showIfExists(emailAddress)}</span>
-    </h5>
-    <h5>
-      <Image
-        src={webIcon}
-        alt="Website icon"
-        format="svg"
-        class="personal__icon"
-      /><span class="personal__info">{showIfExists(personalWebsite)}</span>
-    </h5>
-    <h5>
-      <Image
-        src={locationIcon}
-        alt="Location icon"
-        format="svg"
-        class="personal__icon"
-      /><span class="personal__info"
-        >{showIfExists(city, ", ")}{showIfExists(country)}</span
-      >
-    </h5>
+    {
+      phoneNumber && (
+        <h5>
+          <Image
+            src={phoneIcon}
+            alt="Phone icon"
+            format="svg"
+            class="personal__icon"
+          />
+          <span class="personal__info">{phoneNumber}</span>
+        </h5>
+      )
+    }
+    {
+      emailAddress && (
+        <h5>
+          <Image
+            src={mailIcon}
+            alt="Email icon"
+            format="svg"
+            class="personal__icon"
+          />
+          <a class="with-link" href={`mailto:${emailAddress}`}>
+            <span class="personal__info">{emailAddress}</span>
+          </a>
+        </h5>
+      )
+    }
+    {
+      personalWebsite && (
+        <h5>
+          <Image
+            src={webIcon}
+            alt="Website icon"
+            format="svg"
+            class="personal__icon"
+          />
+          <a
+            class="with-link"
+            href={
+              personalWebsite.startsWith("https://")
+                ? personalWebsite
+                : `https://${personalWebsite}`
+            }
+          >
+            <span class="personal__info">{personalWebsite}</span>
+          </a>
+        </h5>
+      )
+    }
+    {
+      (city || country) && (
+        <h5>
+          <Image
+            src={locationIcon}
+            alt="Location icon"
+            format="svg"
+            class="personal__icon"
+          />
+          <span class="personal__info">
+            {`${city ? city : ""}${city && country ? ", " : ""}${
+              country ? country : ""
+            }`}
+          </span>
+        </h5>
+      )
+    }
   </div>
 </div>
 
@@ -136,7 +165,7 @@ function showIfExists(text: string | undefined, append: string = "") {
     bottom: 0;
     margin: auto;
   }
-  .personal__icon + .personal__info {
+  .personal__icon + * {
     display: block;
     transform: translateX(24px);
   }
