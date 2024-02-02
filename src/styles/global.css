@@ -37,9 +37,8 @@ main {
   box-sizing: border-box;
 }
 
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
+strong {
+  font-weight: 500 !important;
 }
 
 .with-link::after {
@@ -48,6 +47,92 @@ html.dark {
   height: 16px;
   display: inline-block;
   vertical-align: middle;
+}
+
+.personal__primary {
+  width: 240px;
+}
+.personal__image {
+  background-color: rgb(209, 209, 209);
+  border-radius: 50%;
+}
+.personal__name {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+}
+.personal__job-title {
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+.personal__secondary {
+  width: 300px;
+}
+
+.personal__secondary > h5 {
+  position: relative;
+}
+
+.personal__secondary > h5:not(:first-child) {
+  margin-top: 6px;
+}
+
+.personal__icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.personal__icon + * {
+  display: block;
+  transform: translateX(24px);
+}
+
+.personal__info {
+  line-height: 18px;
+}
+
+.section__title {
+  margin: 54px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 500;
+
+  font-size: 16px;
+  line-height: 20px;
+  padding-bottom: 5px;
+}
+.section__divider {
+  border-style: dotted;
+  border-top-width: 2px;
+  margin-block-start: 4px;
+}
+.section__content {
+  margin-block-start: 22px;
+}
+
+.entry h1 {
+}
+.entry h2 {
+}
+.entry h3 {
+}
+.entry ul {
+  list-style-type: disc !important;
+}
+.entry ol {
+  list-style-type: decimal !important;
+}
+
+footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 @page {

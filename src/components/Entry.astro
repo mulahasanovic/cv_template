@@ -1,0 +1,45 @@
+---
+import type { ComponentProps } from "astro/types";
+interface Props {
+  title: string;
+  sub: string;
+  subLink?: string;
+  startDate?: string;
+  endDate?: string;
+  compiledContent: string;
+}
+
+const { title, sub, subLink, compiledContent, startDate, endDate } =
+  Astro.props;
+export type EntryProps = ComponentProps<typeof Entry>;
+---
+
+<div class="entry">
+  <header>
+    <div>
+      <h3>{title}</h3>
+      {
+        subLink ? (
+          <a
+            class="with-link"
+            href={
+              subLink?.startsWith("https://") ? subLink : `https://${subLink}`
+            }
+          >
+            <h4>{sub}</h4>
+          </a>
+        ) : (
+          <h4>{sub}</h4>
+        )
+      }
+    </div>
+    {
+      (startDate || endDate) && (
+        <div>
+          {`${startDate ? `${startDate} - ` : ""}${endDate ? endDate : ""}`}
+        </div>
+      )
+    }
+  </header>
+  <Fragment set:html={compiledContent} />
+</div>

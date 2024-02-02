@@ -1,13 +1,12 @@
 ---
 import "../styles/global.css";
-
 import PersonalDetails, {
   type PersonalDetailsProps,
 } from "../components/PersonalDetails.astro";
 import Footer from "../components/Footer.astro";
 import { type SocialProps } from "../components/Social.astro";
-import Section, { type SectionProps } from "../components/Section.astro";
-import ThemeIcon from "../components/ThemeIcon.astro";
+import Section from "../components/Section.astro";
+import Entry, { type EntryProps } from "../components/Entry.astro";
 
 const personalDetails: PersonalDetailsProps = {
   firstName: "Sead",
@@ -20,29 +19,8 @@ const personalDetails: PersonalDetailsProps = {
   personalWebsite: "sead.dev",
 };
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
-const sections: SectionProps[] = [
-  {
-    title: "Summary",
-    content:
-      "Full Stack Software Developer with a strong focus on details. Proactive and willing to learn new stuff. Worked with multiple technologies across different projects, including design, architecture, optimizations and user experience for almost a decade.",
-  },
-  {
-    title: "Experience",
-  },
-  {
-    title: "Internships",
-    visible: false,
-  },
-  {
-    title: "Education",
-  },
-  {
-    title: "Skills",
-  },
-  {
-    title: "Languages",
-  },
-];
+const experiences = await Astro.glob<EntryProps>("../experiences/*.md");
+
 const socials: SocialProps[] = [
   {
     platform: "twitter",
@@ -82,25 +60,46 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       }
     </style>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap");
     </style>
   </head>
   <body class="p-12">
     <main>
-      <ThemeIcon />
       <PersonalDetails {...personalDetails} />
-      {
-        sections.map((section) => (
-          <Section {...section}>
-            {section.content && <p>{section.content}</p>}
-          </Section>
-        ))
-      }
 
-      <p>My skills are:</p>
-      <ul>
-        {skills.map((skill) => <li class="skill">{skill}</li>)}
-      </ul>
+      <Section title="Summary">
+        Full Stack Software Developer with a strong focus on details. Proactive
+        and willing to learn new stuff. Worked with multiple technologies across
+        different projects, including design, architecture, optimizations and
+        user experience for almost a decade.
+      </Section>
+
+      <Section title="Experience">
+        {
+          experiences.map((exp) => (
+            <Entry
+              title={exp.frontmatter.title}
+              sub={exp.frontmatter.sub}
+              startDate={exp.frontmatter.startDate}
+              endDate={exp.frontmatter.endDate}
+              compiledContent={exp.compiledContent()}
+            />
+          ))
+        }
+      </Section>
+
+      <Section title="Internships" visible={false} />
+
+      <Section title="Education" />
+
+      <Section title="Skills">
+        <ul>
+          {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+      </Section>
+
+      <Section title="Languages" />
+
       <Footer socials={socials} />
     </main>
   </body>

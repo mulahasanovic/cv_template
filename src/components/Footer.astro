@@ -6,14 +6,6 @@ interface Props {
 const { socials } = Astro.props;
 ---
 
-<style>
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>
-
 <footer>
   {
     socials.map((social) => (
