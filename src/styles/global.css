@@ -159,6 +159,23 @@ strong {
 .entry p:not(:first-child) {
   margin-top: 8px;
 }
+.skills-list {
+  margin-top: -8px;
+}
+
+.skill {
+  padding-top: 8px;
+}
+
+.skill__proficiency {
+  color: rgba(1, 1, 1, 0.46875);
+  max-height: 21px;
+  min-width: 105px;
+}
+
+.skill__label {
+  width: 100%;
+}
 
 footer {
   display: flex;
