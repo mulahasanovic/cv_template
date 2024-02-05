@@ -7,6 +7,11 @@ import Footer from "../components/Footer.astro";
 import { type SocialProps } from "../components/Social.astro";
 import Section from "../components/Section.astro";
 import Entry, { type EntryProps } from "../components/Entry.astro";
+import {
+  LanguageProficiency,
+  type SkillProps,
+} from "../components/Skill.astro";
+import Skill, { Proficiency } from "../components/Skill.astro";
 
 const personalDetails: PersonalDetailsProps = {
   firstName: "Sead",
@@ -18,7 +23,42 @@ const personalDetails: PersonalDetailsProps = {
   country: "Bosnia and Herzegovina",
   personalWebsite: "sead.dev",
 };
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills: SkillProps<Proficiency>[] = [
+  { label: "HTML", proficiency: 1 },
+  { label: "CSS", proficiency: 2 },
+  { label: "JavaScript", proficiency: 3 },
+  { label: "TypeScript", proficiency: 4 },
+  { label: "React", proficiency: Proficiency.Basic },
+  { label: "Astro", proficiency: Proficiency.Intermediate },
+  { label: "Writing Docs", proficiency: Proficiency.Advanced },
+  {
+    label:
+      "Very long skills don't break alignment too much, but don't go overboard",
+    proficiency: Proficiency.Expert,
+  },
+  {
+    label: "You can also add skills without Proficiency level",
+  },
+  { label: "HTML", proficiency: 1 },
+  { label: "CSS", proficiency: 2 },
+  { label: "JavaScript", proficiency: 3 },
+  { label: "TypeScript", proficiency: 4 },
+  { label: "React", proficiency: Proficiency.Basic },
+  { label: "Astro", proficiency: Proficiency.Intermediate },
+  { label: "Writing Docs", proficiency: Proficiency.Advanced },
+  {
+    label:
+      "Very long skills don't break alignment too much, but don't go overboard",
+    proficiency: Proficiency.Expert,
+  },
+  {
+    label: "You can also add skills without Proficiency level",
+  },
+];
+const languages: SkillProps<LanguageProficiency>[] = [
+  { label: "Bosnian", proficiency: LanguageProficiency.Native },
+  { label: "English", proficiency: LanguageProficiency.Fluent },
+];
 const experiences = await Astro.glob<EntryProps>("../experiences/*.md");
 const education = await Astro.glob<EntryProps>("../education/*.md");
 
@@ -64,7 +104,7 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap");
     </style>
   </head>
-  <body class="p-12">
+  <body class="lg:p-12">
     <main>
       <PersonalDetails {...personalDetails} />
 
@@ -100,12 +140,16 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       </Section>
 
       <Section title="Skills">
-        <ul>
-          {skills.map((skill) => <li class="skill">{skill}</li>)}
+        <ul class="md:columns-2 skills-list">
+          {skills.map((skill) => <Skill {...skill} />)}
         </ul>
       </Section>
 
-      <Section title="Languages" />
+      <Section title="Languages">
+        <ul class="md:columns-2 skills-list">
+          {languages.map((lang) => <Skill {...lang} />)}
+        </ul>
+      </Section>
 
       <Footer socials={socials} />
     </main>
