@@ -14,28 +14,28 @@ const { title, sub, subLink, compiledContent, startDate, endDate } =
 export type EntryProps = ComponentProps<typeof Entry>;
 ---
 
-<div class="entry">
+<div>
   <header class="flex">
     <div>
-      <h3 class="entry__title">{title}</h3>
+      <h3 class="font-medium">{title}</h3>
       {
         subLink ? (
           <a
-            class="with-link"
+            class="after-link-arrow"
             href={
               subLink?.startsWith("https://") ? subLink : `https://${subLink}`
             }
           >
-            <h4 class="entry__subtitle">{sub}</h4>
+            <h4 class="inline text-black/50">{sub}</h4>
           </a>
         ) : (
-          <h4 class="entry__subtitle">{sub}</h4>
+          <h4 class="inline text-black/50">{sub}</h4>
         )
       }
     </div>
     {
       (startDate || endDate) && (
-        <div class="entry__date ml-auto">
+        <div class="text-black/50 ml-auto">
           {`${startDate ? `${startDate} - ` : ""}${endDate ? endDate : ""}`}
         </div>
       )

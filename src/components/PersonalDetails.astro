@@ -78,7 +78,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
             format="svg"
             class="personal__icon"
           />
-          <a class="with-link" href={`mailto:${emailAddress}`}>
+          <a class="after-link-arrow" href={`mailto:${emailAddress}`}>
             <span class="personal__info">{emailAddress}</span>
           </a>
         </h5>
@@ -94,7 +94,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
             class="personal__icon"
           />
           <a
-            class="with-link"
+            class="after-link-arrow"
             href={
               personalWebsite.startsWith("https://")
                 ? personalWebsite
@@ -125,3 +125,53 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     }
   </div>
 </div>
+
+<style>
+  .personal__primary {
+    width: 240px;
+  }
+  .personal__image {
+    background-color: rgb(209, 209, 209);
+    border-radius: 50%;
+  }
+  .personal__name {
+    font-family: Montserrat, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .personal__job-title {
+    font-family: Roboto, system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+  }
+  .personal__secondary {
+    width: 300px;
+  }
+
+  .personal__secondary > h5 {
+    position: relative;
+  }
+
+  .personal__secondary > h5:not(:first-child) {
+    margin-top: 6px;
+  }
+
+  .personal__icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .personal__icon + * {
+    display: block;
+    transform: translateX(24px);
+  }
+
+  .personal__info {
+    line-height: 18px;
+  }
+</style>

@@ -62,13 +62,9 @@ const socials: SocialProps[] = [
   },
 ];
 
-const skillColor = "navy";
-const fontWeight = "bold";
-const textCase = "uppercase";
-
 const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
   personalDetails.jobTitle
-} | ${new Date().toISOString()} | Resume`;
+} | ${new Date().toLocaleDateString()} | Resume`;
 ---
 
 <html lang="en">
@@ -78,19 +74,14 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap");
     </style>
   </head>
-  <body class="lg:p-12">
-    <main>
+  <body class="text-neutral-800 lg:p-12">
+    <main
+      class="mx-auto my-auto max-w-4xl space-y-14 > * + * shadow-2xl p-16 print:shadow-none print:p-0"
+    >
       <PersonalDetails {...personalDetails} />
 
       <Section title="Summary">
