@@ -18,6 +18,7 @@ Inside of this project, you'll see the following folders and files:
 ├── src/
 │   ├── components/
 │   │   ├── Entry.astro
+│   │   ├── LinkWithArrow.astro
 │   │   ├── Footer.astro
 │   │   ├── PersonalDetails.astro
 │   │   ├── Section.astro
