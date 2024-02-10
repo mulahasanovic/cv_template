@@ -18,6 +18,17 @@ strong {
   font-weight: 500 !important;
 }
 
+ul {
+  list-style-type: disc !important;
+}
+ol {
+  list-style-type: decimal !important;
+}
+ul,
+ol {
+  list-style-position: inside;
+}
+
 .after-link-arrow::after {
   content: url("/icon_link.svg");
   width: 16px;
@@ -29,44 +40,6 @@ strong {
   .after-link-arrow::after {
     content: none;
   }
-}
-.entry__content {
-  margin-top: 4px;
-}
-.entry ul,
-.entry ol {
-  margin-top: 8px;
-  list-style-position: inside;
-}
-.entry ul {
-  list-style-type: disc !important;
-}
-.entry ol {
-  list-style-type: decimal !important;
-}
-.entry li:not(:first-child) {
-  margin-top: 4px;
-}
-.entry p:not(:first-child) {
-  margin-top: 8px;
-}
-.skills-list {
-  margin-top: -8px;
-}
-
-.skill {
-  padding-top: 8px;
-}
-
-.skill__proficiency {
-  max-height: 21px;
-  min-width: 105px;
-}
-
-footer {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
 }
 
 @page {

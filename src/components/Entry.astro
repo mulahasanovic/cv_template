@@ -1,5 +1,6 @@
 ---
 import type { ComponentProps } from "astro/types";
+
 interface Props {
   title: string;
   sub: string;
@@ -11,6 +12,16 @@ interface Props {
 
 const { title, sub, subLink, compiledContent, startDate, endDate } =
   Astro.props;
+
+if (!title) {
+  throw new Error("Entry title is not optional.");
+}
+if (!sub) {
+  throw new Error("Entry sub-title is not optional.");
+}
+if (!compiledContent) {
+  throw new Error("Entry content is not optional.");
+}
 export type EntryProps = ComponentProps<typeof Entry>;
 ---
 
@@ -41,7 +52,7 @@ export type EntryProps = ComponentProps<typeof Entry>;
       )
     }
   </header>
-  <div class="entry__content">
+  <div class="mt-1.5 space-y-1.5">
     <Fragment set:html={compiledContent} />
   </div>
 </div>

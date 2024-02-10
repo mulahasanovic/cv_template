@@ -65,7 +65,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
             format="svg"
             class="block absolute top-0 bottom-0 m-auto"
           />
-          <span class="block translate-x-6 personal__info">{phoneNumber}</span>
+          <span class="block translate-x-6">{phoneNumber}</span>
         </h5>
       )
     }
@@ -82,7 +82,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
             class="block translate-x-6 after-link-arrow"
             href={`mailto:${emailAddress}`}
           >
-            <span class="personal__info">{emailAddress}</span>
+            {emailAddress}
           </a>
         </h5>
       )
@@ -98,13 +98,14 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
           />
           <a
             class="block translate-x-6 after-link-arrow"
+            target="_blank"
             href={
               personalWebsite.startsWith("https://")
                 ? personalWebsite
                 : `https://${personalWebsite}`
             }
           >
-            <span class="personal__info">{personalWebsite}</span>
+            {personalWebsite}
           </a>
         </h5>
       )
@@ -118,7 +119,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
             format="svg"
             class="block absolute top-0 bottom-0 m-auto"
           />
-          <span class="block translate-x-6 personal__info">
+          <span class="block translate-x-6 ">
             {`${city ? city : ""}${city && country ? ", " : ""}${
               country ? country : ""
             }`}

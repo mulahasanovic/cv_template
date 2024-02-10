@@ -3,7 +3,6 @@ import "../styles/global.css";
 import PersonalDetails, {
   type PersonalDetailsProps,
 } from "../components/PersonalDetails.astro";
-import { type SocialProps } from "../components/Social.astro";
 import Section from "../components/Section.astro";
 import Entry, { type EntryProps } from "../components/Entry.astro";
 import {
@@ -13,14 +12,15 @@ import {
 import Skill, { Proficiency } from "../components/Skill.astro";
 
 const personalDetails: PersonalDetailsProps = {
-  firstName: "Sead",
-  lastName: "Mulahasanović",
-  jobTitle: "Software Developer",
-  phoneNumber: "+38762267917",
-  emailAddress: "mulahasanovic@outlook.com",
-  city: "Bugojno",
-  country: "Bosnia and Herzegovina",
-  personalWebsite: "sead.dev",
+  firstName: "First",
+  middleName: "Middle",
+  lastName: "Last",
+  jobTitle: "Job title",
+  phoneNumber: "+5551234567",
+  emailAddress: "email@email.com",
+  city: "City",
+  country: "Country",
+  personalWebsite: "website",
 };
 const skills: SkillProps<Proficiency>[] = [
   { label: "HTML", proficiency: 1 },
@@ -46,21 +46,6 @@ const languages: SkillProps<LanguageProficiency>[] = [
 const experiences = await Astro.glob<EntryProps>("../experiences/*.md");
 const education = await Astro.glob<EntryProps>("../education/*.md");
 
-const socials: SocialProps[] = [
-  {
-    platform: "twitter",
-    username: "astrodotbuild",
-  },
-  {
-    platform: "github",
-    username: "withastro",
-  },
-  {
-    platform: "youtube",
-    username: "astrodotbuild",
-  },
-];
-
 const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
   personalDetails.jobTitle
 } | ${new Date().toLocaleDateString()} | Resume`;
@@ -81,10 +66,13 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       <PersonalDetails {...personalDetails} />
 
       <Section title="Summary">
-        Full Stack Software Developer with a strong focus on details. Proactive
-        and willing to learn new stuff. Worked with multiple technologies across
-        different projects, including design, architecture, optimizations and
-        user experience for almost a decade.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </Section>
 
       <Section title="Experience">
@@ -112,13 +100,13 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       </Section>
 
       <Section title="Skills">
-        <ul class="md:columns-2 skills-list">
+        <ul class="space-y-2 md:columns-2">
           {skills.map((skill) => <Skill {...skill} />)}
         </ul>
       </Section>
 
       <Section title="Languages">
-        <ul class="md:columns-2 skills-list">
+        <ul class="space-y-2 md:columns-2">
           {languages.map((lang) => <Skill {...lang} />)}
         </ul>
       </Section>
