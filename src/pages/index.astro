@@ -5,11 +5,7 @@ import PersonalDetails, {
 } from "../components/PersonalDetails.astro";
 import Section from "../components/Section.astro";
 import Entry, { type EntryProps } from "../components/Entry.astro";
-import {
-  LanguageProficiency,
-  type SkillProps,
-} from "../components/Skill.astro";
-import Skill, { Proficiency } from "../components/Skill.astro";
+import Skill, { Proficiency, type SkillProps } from "../components/Skill.astro";
 
 const personalDetails: PersonalDetailsProps = {
   firstName: "First",
@@ -22,11 +18,11 @@ const personalDetails: PersonalDetailsProps = {
   country: "Country",
   personalWebsite: "website",
 };
-const skills: SkillProps<Proficiency>[] = [
-  { label: "HTML", proficiency: 1 },
-  { label: "CSS", proficiency: 2 },
-  { label: "JavaScript", proficiency: 3 },
-  { label: "TypeScript", proficiency: 4 },
+const skills: SkillProps[] = [
+  { label: "HTML", proficiency: Proficiency.Basic },
+  { label: "CSS", proficiency: Proficiency.Intermediate },
+  { label: "JavaScript", proficiency: Proficiency.Advanced },
+  { label: "TypeScript", proficiency: Proficiency.Expert },
   { label: "React", proficiency: Proficiency.Basic },
   { label: "Astro", proficiency: Proficiency.Intermediate },
   { label: "Writing Docs", proficiency: Proficiency.Advanced },
@@ -39,9 +35,9 @@ const skills: SkillProps<Proficiency>[] = [
     label: "You can also add skills without Proficiency level",
   },
 ];
-const languages: SkillProps<LanguageProficiency>[] = [
-  { label: "Bosnian", proficiency: LanguageProficiency.Native },
-  { label: "English", proficiency: LanguageProficiency.Fluent },
+const languages: SkillProps[] = [
+  { label: "Some native language", proficiency: Proficiency.Native },
+  { label: "English", proficiency: Proficiency.Fluent },
 ];
 const experiences = await Astro.glob<EntryProps>("../experiences/*.md");
 const education = await Astro.glob<EntryProps>("../education/*.md");
@@ -85,8 +81,6 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
           ))
         }
       </Section>
-
-      <Section title="Internships" visible={false} />
 
       <Section title="Education">
         {

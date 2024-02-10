@@ -6,27 +6,22 @@ export enum Proficiency {
   Intermediate,
   Advanced,
   Expert,
-}
-
-export enum LanguageProficiency {
-  Basic = 1,
-  Intermediate,
   Fluent,
   Native,
 }
 
-interface Props<T> {
+interface Props {
   label: string;
-  proficiency?: T;
+  proficiency?: Proficiency;
 }
-const { label, proficiency = 0 } = Astro.props;
-export type SkillProps<T> = ComponentProps<typeof Skill<T>>;
+const { label, proficiency } = Astro.props;
+export type SkillProps = ComponentProps<typeof Skill>;
 ---
 
 <li class="flex items-center">
   <div class="w-full mr-2.5">{label}</div>
   {
-    proficiency > 0 && (
+    proficiency && (
       <div class="min-w-28 text-black/50">{Proficiency[proficiency]}</div>
     )
   }

@@ -4,8 +4,7 @@
   - `personalDetails`
   - `skills`
   - `languages`
-  - `socials`
-- Create `md` files with your experiences and education
+- Create `md` files with your experiences and education in their respective folders
 - Edit the template as you see fit, add new sections, hide sections, remove sections, customize styles
 - Good luck & Enjoy
 
@@ -22,8 +21,7 @@ Inside of this project, you'll see the following folders and files:
 │   │   ├── Footer.astro
 │   │   ├── PersonalDetails.astro
 │   │   ├── Section.astro
-│   │   ├── Skill.astro
-│   │   └── Social.astro
+│   │   └── Skill.astro
 │   ├── education/
 │   │   └── 01_school.md
 │   ├── experiences/
