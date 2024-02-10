@@ -10,7 +10,6 @@ img {
 }
 
 html {
-  font-family: Roboto, system-ui, sans-serif;
   font-size: 14px;
   line-height: 18px;
 }
@@ -30,12 +29,6 @@ strong {
   .after-link-arrow::after {
     content: none;
   }
-}
-.section__title {
-  letter-spacing: 4px;
-
-  font-size: 16px;
-  line-height: 20px;
 }
 .entry__content {
   margin-top: 4px;

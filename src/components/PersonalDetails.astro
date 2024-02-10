@@ -39,46 +39,49 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     showImage && (
       <Image
         src={personPlaceholder}
-        class="personal__image mb-10 mr-10 md:mb-0"
+        class="mb-10 mr-10 md:mb-0"
         alt="Person placeholder image"
         format="svg"
       />
     )
   }
-  <div class="personal__primary mr-10 mb-10 sm:mb-0">
-    <h1 class="personal__name">
+  <div class="w-60 mr-10 mb-10 sm:mb-0">
+    <h1 class="text-4xl font-bold">
       {firstName}
       {middleName && middleName}
       {lastName}
     </h1>
-    <h2 class="personal__job-title mt-1.5">
+    <h2 class="text-2xl mt-1.5">
       {jobTitle}
     </h2>
   </div>
-  <div class="personal__secondary md:ml-auto">
+  <div class="w-72 space-y-1.5 md:ml-auto">
     {
       phoneNumber && (
-        <h5>
+        <h5 class="relative">
           <Image
             src={phoneIcon}
             alt="Phone icon"
             format="svg"
-            class="personal__icon"
+            class="block absolute top-0 bottom-0 m-auto"
           />
-          <span class="personal__info">{phoneNumber}</span>
+          <span class="block translate-x-6 personal__info">{phoneNumber}</span>
         </h5>
       )
     }
     {
       emailAddress && (
-        <h5>
+        <h5 class="relative">
           <Image
             src={mailIcon}
             alt="Email icon"
             format="svg"
-            class="personal__icon"
+            class="block absolute top-0 bottom-0 m-auto"
           />
-          <a class="after-link-arrow" href={`mailto:${emailAddress}`}>
+          <a
+            class="block translate-x-6 after-link-arrow"
+            href={`mailto:${emailAddress}`}
+          >
             <span class="personal__info">{emailAddress}</span>
           </a>
         </h5>
@@ -86,15 +89,15 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     }
     {
       personalWebsite && (
-        <h5>
+        <h5 class="relative">
           <Image
             src={webIcon}
             alt="Website icon"
             format="svg"
-            class="personal__icon"
+            class="block absolute top-0 bottom-0 m-auto"
           />
           <a
-            class="after-link-arrow"
+            class="block translate-x-6 after-link-arrow"
             href={
               personalWebsite.startsWith("https://")
                 ? personalWebsite
@@ -108,14 +111,14 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     }
     {
       (city || country) && (
-        <h5>
+        <h5 class="relative">
           <Image
             src={locationIcon}
             alt="Location icon"
             format="svg"
-            class="personal__icon"
+            class="block absolute top-0 bottom-0 m-auto"
           />
-          <span class="personal__info">
+          <span class="block translate-x-6 personal__info">
             {`${city ? city : ""}${city && country ? ", " : ""}${
               country ? country : ""
             }`}
@@ -125,53 +128,3 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     }
   </div>
 </div>
-
-<style>
-  .personal__primary {
-    width: 240px;
-  }
-  .personal__image {
-    background-color: rgb(209, 209, 209);
-    border-radius: 50%;
-  }
-  .personal__name {
-    font-family: Montserrat, system-ui, sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 32px;
-  }
-  .personal__job-title {
-    font-family: Roboto, system-ui, sans-serif;
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 400;
-  }
-  .personal__secondary {
-    width: 300px;
-  }
-
-  .personal__secondary > h5 {
-    position: relative;
-  }
-
-  .personal__secondary > h5:not(:first-child) {
-    margin-top: 6px;
-  }
-
-  .personal__icon {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-  }
-
-  .personal__icon + * {
-    display: block;
-    transform: translateX(24px);
-  }
-
-  .personal__info {
-    line-height: 18px;
-  }
-</style>
