@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f0bd34e5-38f4-49fb-a0ea-a8f1f512a2ce/deploy-status)](https://app.netlify.com/sites/seadresumetemplate/deploys)
+
 # Quick CV \ Resume template based on Astro Starter Kit: Minimal
 
 - At `index.astro` update the following:
@@ -7,6 +9,10 @@
 - Create `md` files with your experiences and education in their respective folders
 - Edit the template as you see fit, add new sections, hide sections, remove sections, customize styles
 - Good luck & Enjoy
+
+## 🖼️ Live demo
+
+Demo is hosted at netlify, click [here](https://seadresumetemplate.netlify.app/) to check it out.
 
 ## 🚀 Project Structure
 
