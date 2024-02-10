@@ -56,8 +56,14 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
     <title>{pageTitle}</title>
   </head>
   <body class="font-sans text-neutral-800 lg:p-12">
+    <button
+      data-print-button
+      class="bg-white size-16
+    rounded-full shadow-md fixed top-5 right-5 print:hidden"
+      type="button">Print</button
+    >
     <main
-      class="mx-auto my-auto max-w-4xl space-y-14 shadow-2xl p-16 print:shadow-none print:p-0"
+      class="rounded-lg mx-auto my-auto max-w-4xl space-y-14 shadow-2xl p-16 print:shadow-none print:p-0"
     >
       <PersonalDetails {...personalDetails} />
 
@@ -94,16 +100,20 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
       </Section>
 
       <Section title="Skills">
-        <ul class="space-y-2 md:columns-2">
+        <ul class="space-y-2 sm:columns-2">
           {skills.map((skill) => <Skill {...skill} />)}
         </ul>
       </Section>
 
       <Section title="Languages">
-        <ul class="space-y-2 md:columns-2">
+        <ul class="space-y-2 sm:columns-2">
           {languages.map((lang) => <Skill {...lang} />)}
         </ul>
       </Section>
     </main>
+    <script>
+      const button = document.querySelector("[data-print-button]");
+      button?.addEventListener("click", () => window.print());
+    </script>
   </body>
 </html>
