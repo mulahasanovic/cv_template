@@ -1,12 +1,9 @@
 ---
 import type { ComponentProps } from "astro/types";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import personPlaceholder from "../images/person_placeholder.svg";
-import locationIcon from "../images/icon_location.svg";
-import mailIcon from "../images/icon_mail.svg";
-import phoneIcon from "../images/icon_phone.svg";
-import webIcon from "../images/icon_web.svg";
-
+import LinkWithArrow from "./LinkWithArrow.astro";
 interface Props {
   firstName: string;
   middleName?: string;
@@ -39,7 +36,7 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     showImage && (
       <Image
         src={personPlaceholder}
-        class="mb-10 mr-10 md:mb-0"
+        class="bg-slate-400 rounded-md shadow-md mb-10 mr-10 md:mb-0"
         alt="Person placeholder image"
         format="svg"
       />
@@ -59,10 +56,9 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     {
       phoneNumber && (
         <h5 class="relative">
-          <Image
-            src={phoneIcon}
-            alt="Phone icon"
-            format="svg"
+          <Icon
+            size={12}
+            name={"icon_phone"}
             class="block absolute top-0 bottom-0 m-auto"
           />
           <span class="block translate-x-6">{phoneNumber}</span>
@@ -72,10 +68,10 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     {
       emailAddress && (
         <h5 class="relative">
-          <Image
-            src={mailIcon}
-            alt="Email icon"
-            format="svg"
+          <Icon
+            width={12}
+            height={10}
+            name="icon_mail"
             class="block absolute top-0 bottom-0 m-auto"
           />
           <a
@@ -90,33 +86,28 @@ export type PersonalDetailsProps = ComponentProps<typeof PersonalDetails>;
     {
       personalWebsite && (
         <h5 class="relative">
-          <Image
-            src={webIcon}
-            alt="Website icon"
-            format="svg"
+          <Icon
+            size={12}
+            name="icon_web"
             class="block absolute top-0 bottom-0 m-auto"
           />
-          <a
+          <LinkWithArrow
+            href={personalWebsite}
             class="block translate-x-6 after-link-arrow"
             target="_blank"
-            href={
-              personalWebsite.startsWith("https://")
-                ? personalWebsite
-                : `https://${personalWebsite}`
-            }
           >
             {personalWebsite}
-          </a>
+          </LinkWithArrow>
         </h5>
       )
     }
     {
       (city || country) && (
         <h5 class="relative">
-          <Image
-            src={locationIcon}
-            alt="Location icon"
-            format="svg"
+          <Icon
+            width={10}
+            height={13}
+            name="icon_location"
             class="block absolute top-0 bottom-0 m-auto"
           />
           <span class="block translate-x-6 ">

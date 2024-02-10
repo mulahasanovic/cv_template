@@ -22,7 +22,9 @@ export type SkillProps = ComponentProps<typeof Skill>;
   <div class="w-full mr-2.5">{label}</div>
   {
     proficiency && (
-      <div class="min-w-28 text-black/50">{Proficiency[proficiency]}</div>
+      <div class="min-w-28 text-black/50 dark:text-white/50">
+        {Proficiency[proficiency]}
+      </div>
     )
   }
 </li>

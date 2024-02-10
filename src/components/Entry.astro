@@ -1,5 +1,6 @@
 ---
 import type { ComponentProps } from "astro/types";
+import LinkWithArrow from "./LinkWithArrow.astro";
 
 interface Props {
   title: string;
@@ -27,26 +28,21 @@ export type EntryProps = ComponentProps<typeof Entry>;
 
 <div>
   <header class="flex">
-    <div class="entry">
+    <div>
       <h3 class="font-medium">{title}</h3>
       {
         subLink ? (
-          <a
-            class="after-link-arrow"
-            href={
-              subLink?.startsWith("https://") ? subLink : `https://${subLink}`
-            }
-          >
-            <h4 class="inline text-black/50">{sub}</h4>
-          </a>
+          <LinkWithArrow href={subLink}>
+            <h4 class="inline text-black/50 dark:text-white/50">{sub}</h4>
+          </LinkWithArrow>
         ) : (
-          <h4 class="inline text-black/50">{sub}</h4>
+          <h4 class="inline text-black/50 dark:text-white/50">{sub}</h4>
         )
       }
     </div>
     {
       (startDate || endDate) && (
-        <div class="text-black/50 ml-auto">
+        <div class="text-black/50 dark:text-white/50 ml-auto">
           {`${startDate ? `${startDate} - ` : ""}${endDate ? endDate : ""}`}
         </div>
       )
