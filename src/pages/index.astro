@@ -3,7 +3,6 @@ import "../styles/global.css";
 import PersonalDetails, {
   type PersonalDetailsProps,
 } from "../components/PersonalDetails.astro";
-import Footer from "../components/Footer.astro";
 import { type SocialProps } from "../components/Social.astro";
 import Section from "../components/Section.astro";
 import Entry, { type EntryProps } from "../components/Entry.astro";
@@ -123,8 +122,6 @@ const pageTitle = `${personalDetails.firstName} ${personalDetails.lastName} | ${
           {languages.map((lang) => <Skill {...lang} />)}
         </ul>
       </Section>
-
-      <Footer socials={socials} />
     </main>
   </body>
 </html>
